@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title id="title"></title>
+</head>
+<body>
+    <p id="p"></p>
+    <script>
+        function lag(length){
+            const currentTime = new Date().getTime();
+            while (new Date().getTime() < currentTime + ((length * 1000) + 0.001)){}
+        }
+        var Random = {
+            random: function(min,max){
+                var array = [max]
+                var rand1 = Math.random() * 100
+                var round1 = Math.round(rand1)
+                for(var i = max; i--;){
+                    array.push(i)
+                    if(i === min){
+                        break;
+                    }
+                }
+                var non = array[round1];
+                var not = Math.round(Math.random() * (max - min + 1) + min);
+                if(non !== undefined){
+                    if (non > max){
+                        return non = 1;
+                    } else if (non <= max){
+                        return non;
+                    }
+                } else if(non === undefined){
+                    if (not > max){
+                        return not = 1;
+                    } else if (not <= max){
+                        return not;
+                    }
+                }
+            }
+        }
+        var o = 5;
+        function inttostr(value){
+            //last two digits of parameter
+            var lastTwoDigits = value % 100;
+            //last digit of parameter
+            var lastDigit = value % 10;
+            if (lastDigit === 1 && lastTwoDigits !== 11){ //first
+                return value + "st";
+            } else if (lastDigit === 2 && lastTwoDigits !== 12){ //second
+                return value + "nd";
+            } else if (lastDigit === 3 && lastTwoDigits !== 13){ //third
+                return value + "rd";
+            } else if (lastTwoDigits >= 11 && lastTwoDigits <= 13){ //bc first second and third there, we have to make seperate if statement for 11 12 and 13 because they should all end in "th" right
+                return value + "th";
+            } else{
+                return value + "th"; //all the other numbers will end in th
+            }
+        }
+        var ar = []
+        var askarray = prompt('how many number of decisions 🗿 (only numbers, 2-15)')
+        var pruh = parseInt(askarray)
+        if (isNaN(pruh)){
+            alert("imagine not putting in a number lol")
+        } else if (pruh === 0){
+            alert("wow... did you really have to type in \"0\" ")
+        } else if (pruh > 15 || pruh < 2){
+            alert("bruh i just said the max/min option limit is 2-5")
+        } else if (isNaN(pruh) !== true && pruh <= 15 && pruh !== 0){
+            for (var i = 1; i <= pruh; i++){
+                var ok = prompt('type in your ' + inttostr(i) + ' option')
+                if (ok !== "") {
+                    ar.push(ok);
+                    var title = document.getElementById('title')
+                    if (i !== pruh){
+                        title.textContent += ar[i - 1] + ' VS. ';
+                    } else if (i === pruh){
+                        title.textContent += ar[pruh - 1];
+                        break;
+                    }
+                }
+            }
+        }
+        document.getElementById('p').textContent = ar[Random.random(0,pruh - 1)] + ' WINSSS'
+    </script>
+</body>
+</html>
